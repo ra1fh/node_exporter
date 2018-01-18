@@ -61,5 +61,13 @@ func (c *meminfoCollector) getMemInfo() (map[string]float64, error) {
 		"swapped_in_pages_bytes_total":  ps * float64(uvmexp.pgswapin),
 		"swapped_out_pages_bytes_total": ps * float64(uvmexp.pgswapout),
 		"wired_bytes":                   ps * float64(uvmexp.wired),
+		"Active":                        ps * float64(uvmexp.active),
+		"MemTotal":                      ps * float64(uvmexp.npages),
+		"MemFree":                       ps * float64(uvmexp.free),
+		"MemAvailable":                  ps * float64(uvmexp.free),
+		"Cached":                        ps * float64(uvmexp.vnodepages),
+		"SwapTotal":                     ps * float64(uvmexp.swpages),
+		"SwapCached":                    ps * float64(uvmexp.swpgonly),
+		"SwapFree":                      ps * (float64(uvmexp.swpages) - float64(uvmexp.swpgonly)),
 	}, nil
 }
